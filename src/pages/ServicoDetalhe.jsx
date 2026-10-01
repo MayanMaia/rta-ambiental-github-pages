@@ -36,7 +36,7 @@ export default function ServicoDetalhe({ categoria = 'tecnologia' }) {
   )
 
   return (
-    <section className="public-page section" style={{ '--page-image': "url('/imagens-docx/image6.JPG')" }}>
+    <section className="public-page section" style={{ '--page-image': `url(${import.meta.env.BASE_URL}imagens-docx/image6.JPG)` }}>
       <div className="container max-w-3xl mx-auto">
         <Link to={urlCategoria} className="text-sm text-primary-600 hover:underline mb-6 inline-block">
           ← Voltar para {categoriaAtual === 'consultoria' ? 'Consultoria' : 'Tecnologia'}

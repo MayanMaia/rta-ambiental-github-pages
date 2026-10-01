@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 
-const logoRta = '/imagens-docx/image1.png'
+const logoRta = import.meta.env.BASE_URL + 'imagens-docx/image1.png'
 
 const NAV_LINKS = [
   { to: '/',          label: 'Home'         },

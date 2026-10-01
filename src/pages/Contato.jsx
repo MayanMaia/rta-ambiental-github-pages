@@ -55,7 +55,7 @@ export default function Contato() {
   }
 
   return (
-    <section className="public-page contact-page section" style={{ '--page-image': "url('/imagens-docx/image12.jpg')" }}>
+    <section className="public-page contact-page section" style={{ '--page-image': `url(${import.meta.env.BASE_URL}imagens-docx/image12.jpg)` }}>
       <div className="container">
         <div className="contact-page__intro">
           <div>

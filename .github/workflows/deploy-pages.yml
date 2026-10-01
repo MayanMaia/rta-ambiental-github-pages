@@ -30,6 +30,9 @@ jobs:
       - name: Instalar dependências
         run: npm ci
 
+      - name: Restaurar HTML-fonte antes do build
+        run: cp index.src.html index.html
+
       - name: Gerar build de produção
         run: npm run build
 

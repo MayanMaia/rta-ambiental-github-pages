@@ -4,10 +4,10 @@ import { updateMeta } from '../utils/seo'
 import { getSiteContent } from '../mock/content'
 
 const SERVICES = [
-  { title: 'Valoração de resíduos', text: 'Transformamos resíduos em oportunidades de reaproveitamento e valor.', image: '/imagens-docx/image3.jpeg' },
-  { title: 'Destinação de resíduos', text: 'Gestão segura, rastreável e alinhada à legislação ambiental.', image: '/imagens-docx/image4.JPG' },
-  { title: 'Fornecimento de produtos', text: 'Materiais e insumos para processos industriais mais eficientes.', image: '/imagens-docx/image5.png' },
-  { title: 'Águas e efluentes', text: 'Soluções técnicas para tratamento, controle e recuperação.', image: '/imagens-docx/image6.JPG' },
+  { title: 'Valoração de resíduos', text: 'Transformamos resíduos em oportunidades de reaproveitamento e valor.', image: import.meta.env.BASE_URL + 'imagens-docx/image3.jpeg' },
+  { title: 'Destinação de resíduos', text: 'Gestão segura, rastreável e alinhada à legislação ambiental.', image: import.meta.env.BASE_URL + 'imagens-docx/image4.JPG' },
+  { title: 'Fornecimento de produtos', text: 'Materiais e insumos para processos industriais mais eficientes.', image: import.meta.env.BASE_URL + 'imagens-docx/image5.png' },
+  { title: 'Águas e efluentes', text: 'Soluções técnicas para tratamento, controle e recuperação.', image: import.meta.env.BASE_URL + 'imagens-docx/image6.JPG' },
 ]
 
 const parseItems = (items) => {
@@ -147,7 +147,7 @@ function renderBuilderBlock(block) {
         <section className="section" style={sectionStyle}>
           <div className="container grid items-center gap-8 md:grid-cols-2">
             <div style={{ order: block.align === 'right' ? 2 : 1 }}>
-              <img src={block.imageUrl || '/imagens-docx/image15.jpg'} alt={block.title || 'Imagem'} className="h-[420px] w-full rounded-2xl object-cover" />
+              <img src={block.imageUrl || import.meta.env.BASE_URL + 'imagens-docx/image15.jpg'} alt={block.title || 'Imagem'} className="h-[420px] w-full rounded-2xl object-cover" />
             </div>
             <div style={{ order: block.align === 'right' ? 1 : 2 }}>
               <p className="eyebrow" style={{ color: accentColor }}>Destaque</p>
@@ -187,7 +187,7 @@ function renderBuilderBlock(block) {
     case 'cta':
       return (
         <section className="relative overflow-hidden py-16 text-white md:py-24" style={sectionStyle}>
-          <div className="absolute inset-y-0 right-0 w-1/2 bg-[url('/imagens-docx/image15.jpg')] bg-cover bg-center opacity-25" />
+          <div className="absolute inset-y-0 right-0 w-1/2 bg-[url('/rta-ambiental-github-pages/imagens-docx/image15.jpg')] bg-cover bg-center opacity-25" />
           <div className="container relative">
             <p className="eyebrow" style={{ color: accentColor }}>Vamos construir juntos</p>
             <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
@@ -262,7 +262,7 @@ export default function Home() {
           </section>
 
           <section className="relative overflow-hidden bg-[#101c43] py-16 text-white md:py-24">
-            <div className="absolute inset-y-0 right-0 w-1/2 bg-[url('/imagens-docx/image15.jpg')] bg-cover bg-center opacity-25" />
+            <div className="absolute inset-y-0 right-0 w-1/2 bg-[url('/rta-ambiental-github-pages/imagens-docx/image15.jpg')] bg-cover bg-center opacity-25" />
             <div className="container relative"><p className="eyebrow text-[#f6aa00]">Vamos construir juntos</p><div className="flex flex-col justify-between gap-8 md:flex-row md:items-end"><h2 className="max-w-2xl text-3xl font-heading font-semibold leading-tight sm:text-5xl">Seu próximo projeto pode deixar uma marca positiva.</h2><Link to="/contato" className="btn btn-lg shrink-0 bg-[#36ad55] text-white hover:bg-[#48c76a]">Iniciar conversa</Link></div>
               </div>
           </section>

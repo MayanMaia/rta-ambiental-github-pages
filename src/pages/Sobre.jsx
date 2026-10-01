@@ -20,7 +20,7 @@ export default function Sobre() {
   const sobreCards = Array.isArray(content?.sobreBuilder?.layout) ? content.sobreBuilder.layout : []
 
   return (
-    <section className="public-page section" style={{ '--page-image': "url('/imagens-docx/image2.jpeg')" }}>
+    <section className="public-page section" style={{ '--page-image': `url(${import.meta.env.BASE_URL}imagens-docx/image2.jpeg)` }}>
       <div className="container mx-auto max-w-5xl">
         <h1 className="section-title text-white">{content.sobre.title}</h1>
         <p className="section-subtitle mb-10 text-white/80">{content.sobre.subtitle}</p>

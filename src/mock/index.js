@@ -46,9 +46,9 @@ export function resetMockData() {
     },
     sobreBuilder: {
       layout: [
-        { id: 'sobre-card-missao', type: 'card', title: 'Missão', text: 'Oferecer soluções ambientais de excelência, contribuindo para um futuro sustentável.', imageUrl: '/imagens-docx/image7.png', backgroundColor: '#ffffff', textColor: '#101c43', borderColor: '#36ad55' },
-        { id: 'sobre-card-visao', type: 'card', title: 'Visão', text: 'Ser referência em serviços ambientais, reconhecida pela qualidade e inovação.', imageUrl: '/imagens-docx/image8.jpg', backgroundColor: '#ffffff', textColor: '#101c43', borderColor: '#36ad55' },
-        { id: 'sobre-card-valores', type: 'card', title: 'Valores', text: 'Ética, responsabilidade, sustentabilidade, qualidade e comprometimento.', imageUrl: '/imagens-docx/image10.jpg', backgroundColor: '#ffffff', textColor: '#101c43', borderColor: '#36ad55' },
+        { id: 'sobre-card-missao', type: 'card', title: 'Missão', text: 'Oferecer soluções ambientais de excelência, contribuindo para um futuro sustentável.', imageUrl: import.meta.env.BASE_URL + 'imagens-docx/image7.png', backgroundColor: '#ffffff', textColor: '#101c43', borderColor: '#36ad55' },
+        { id: 'sobre-card-visao', type: 'card', title: 'Visão', text: 'Ser referência em serviços ambientais, reconhecida pela qualidade e inovação.', imageUrl: import.meta.env.BASE_URL + 'imagens-docx/image8.jpg', backgroundColor: '#ffffff', textColor: '#101c43', borderColor: '#36ad55' },
+        { id: 'sobre-card-valores', type: 'card', title: 'Valores', text: 'Ética, responsabilidade, sustentabilidade, qualidade e comprometimento.', imageUrl: import.meta.env.BASE_URL + 'imagens-docx/image10.jpg', backgroundColor: '#ffffff', textColor: '#101c43', borderColor: '#36ad55' },
       ],
     },
   }))
