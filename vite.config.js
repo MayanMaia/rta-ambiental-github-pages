@@ -5,8 +5,8 @@ import path from 'path'
 
 export default defineConfig({
   plugins: [react()],
-  // O site é servido pelo GitHub Pages em /rta-ambiental-frontend/.
-  base: process.env.NODE_ENV === 'production' ? '/rta-ambiental-frontend/' : '/',
+  // O site é servido pelo GitHub Pages em /rta-ambiental-github-pages/.
+  base: process.env.NODE_ENV === 'production' ? '/rta-ambiental-github-pages/' : '/',
   server: {
     allowedHosts: true,
   },
