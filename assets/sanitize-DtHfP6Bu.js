@@ -1,0 +1,1 @@
+const r=(e="")=>String(e).replace(/<[^>]*>/g,"").trim(),s=(e="")=>String(e).replace(/<script[\s\S]*?<\/script>/gi,"").replace(/<style[\s\S]*?<\/style>/gi,"").replace(/<iframe[\s\S]*?<\/iframe>/gi,"").replace(/\s+on\w+=['"][^'"]*['"]/gi,"").replace(/javascript:/gi,"").trim(),a=e=>Object.fromEntries(Object.entries(e).map(([i,t])=>[i,typeof t=="string"?r(t):t]));export{a,s};
