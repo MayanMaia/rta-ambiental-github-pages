@@ -11,7 +11,7 @@ export default function Privacidade() {
   }, [])
 
   return (
-    <section className="public-page section" style={{ '--page-image': "url('/imagens-docx/image14.jpeg')" }}>
+    <section className="public-page section" style={{ '--page-image': `url(${import.meta.env.BASE_URL}imagens-docx/image14.jpeg)` }}>
       <div className="container max-w-3xl mx-auto">
         <h1 className="section-title">Política de Privacidade</h1>
         <p className="text-sm text-neutral-400 mb-8">Última atualização: agosto de 2026</p>

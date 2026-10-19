@@ -8,7 +8,7 @@ export default function NaoEncontrado() {
   }, [])
 
   return (
-    <section className="public-page section flex min-h-[60vh] flex-col items-center justify-center text-center" style={{ '--page-image': "url('/imagens-docx/image13.jpeg')" }}>
+    <section className="public-page section flex min-h-[60vh] flex-col items-center justify-center text-center" style={{ '--page-image': `url(${import.meta.env.BASE_URL}imagens-docx/image13.jpeg)` }}>
       <p className="text-8xl font-heading font-bold text-primary-100 mb-4">404</p>
       <h1 className="text-2xl font-heading font-bold text-neutral-800 mb-3">
         Página não encontrada

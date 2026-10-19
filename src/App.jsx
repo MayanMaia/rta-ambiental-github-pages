@@ -55,7 +55,7 @@ function LegacyServicoRedirect() {
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
       <Suspense fallback={<LoadingSpinner />}>
         <Routes>
           {/* Rotas públicas */}

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 
-const logoRta = '/imagens-docx/image1.png'
+const logoRta = import.meta.env.BASE_URL + 'imagens-docx/image1.png'
 
 export default function Footer() {
   const year = new Date().getFullYear()
