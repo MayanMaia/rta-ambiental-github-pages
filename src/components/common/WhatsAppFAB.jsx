@@ -1,8 +1,9 @@
-const WHATSAPP_NUMBER = import.meta.env.VITE_WHATSAPP_NUMBER ?? '5500000000000'
+const WHATSAPP_NUMBER = import.meta.env.VITE_WHATSAPP_NUMBER
 const WHATSAPP_MSG    = 'Olá! Gostaria de saber mais sobre os serviços da RTA Ambiental.'
 
 export default function WhatsAppFAB() {
-  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MSG)}`
+  const number = WHATSAPP_NUMBER || '5500000000000'
+  const url = `https://wa.me/${number}?text=${encodeURIComponent(WHATSAPP_MSG)}`
 
   return (
     <a

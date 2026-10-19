@@ -2,14 +2,14 @@ import { useState, useEffect } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 
-const logoRta = import.meta.env.BASE_URL + 'imagens-docx/image1.png'
+const logoRta = '/imagens-docx/image1.png'
 
 const NAV_LINKS = [
   { to: '/',          label: 'Home'         },
   { to: '/sobre',     label: 'Sobre'        },
-  { to: '/tecnologia',label: 'Tecnologia'   },
+  { to: '/tecnologia',label: 'Ambiental'    },
+  { to: '/engenharia',label:'Engenharia'   },
   { to: '/consultoria',label:'Consultoria' },
-  { to: '/news',      label: 'News'         },
   { to: '/contato',   label: 'Fale Conosco' },
 ]
 

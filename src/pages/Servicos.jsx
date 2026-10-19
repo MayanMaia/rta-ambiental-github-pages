@@ -10,7 +10,7 @@ export default function Servicos({ categoria = 'tecnologia' }) {
   const [erro, setErro] = useState(null)
   const [expandedId, setExpandedId] = useState(null)
 
-  const titulo = categoria === 'consultoria' ? 'Consultoria' : 'Tecnologia'
+  const titulo = categoria === 'consultoria' ? 'Consultoria' : 'Ambiental'
   const caminho = categoria === 'consultoria' ? '/consultoria' : '/tecnologia'
 
   useEffect(() => {
@@ -27,11 +27,11 @@ export default function Servicos({ categoria = 'tecnologia' }) {
   }, [categoria, caminho, titulo])
 
   return (
-    <section className="public-page section" style={{ backgroundColor: '#1a2332' }}>
+    <section className="public-page section">
       <div className="container">
         <div className="mb-10 max-w-3xl">
           <h1 className="section-title">{titulo}</h1>
-          <p className="section-subtitle max-w-2xl text-white/80">
+          <p className="section-subtitle max-w-2xl">
             {categoria === 'consultoria'
               ? 'Estratégias e acompanhamento técnico para desenvolver projetos com segurança, conformidade e resultados concretos.'
               : 'Soluções ambientais completas para atender sua empresa com segurança, eficiência e responsabilidade.'}
@@ -58,8 +58,8 @@ export default function Servicos({ categoria = 'tecnologia' }) {
                   className={[
                     'group relative overflow-hidden rounded-[28px] border-4 p-6 text-left transition-all duration-500 ease-out',
                     hasImage
-                      ? 'border-primary-600 bg-slate-900 text-white shadow-[0_24px_60px_rgba(15,23,42,0.18)] hover:-translate-y-1 hover:shadow-[0_28px_70px_rgba(15,23,42,0.22)]'
-                      : 'border-primary-600 bg-[linear-gradient(135deg,#11213d_0%,#1d3557_52%,#0b172d_100%)] text-white shadow-[0_20px_45px_rgba(2,6,23,0.16)] hover:-translate-y-1 hover:shadow-[0_24px_55px_rgba(2,6,23,0.2)]',
+                      ? 'border-primary-600 bg-[#173c25] text-white shadow-[0_24px_60px_rgba(15,23,42,0.18)] hover:-translate-y-1 hover:shadow-[0_28px_70px_rgba(15,23,42,0.22)]'
+                      : 'border-primary-600 bg-[linear-gradient(135deg,#173c25_0%,#245b35_52%,#102a1a_100%)] text-white shadow-[0_20px_45px_rgba(2,6,23,0.16)] hover:-translate-y-1 hover:shadow-[0_24px_55px_rgba(2,6,23,0.2)]',
                     'min-h-[230px] md:min-h-[290px]',
                   ].join(' ')}
                   style={hasImage ? {
@@ -68,16 +68,21 @@ export default function Servicos({ categoria = 'tecnologia' }) {
                     backgroundPosition: 'center',
                   } : undefined}
                 >
-                  {hasImage && <span className="absolute inset-0 bg-slate-950/85" />}
-                  {!hasImage && <span className="absolute inset-0 bg-slate-950" />}
+                  {hasImage && (
+                    <span
+                      className="absolute inset-0"
+                      style={{ background: 'linear-gradient(180deg, rgba(3,7,18,0.24), rgba(3,7,18,0.82))' }}
+                    />
+                  )}
+                  {!hasImage && <span className="absolute inset-0 bg-[#102a1a]" />}
 
                   <div className="relative z-10 flex h-full flex-col justify-between">
                     <div>
-                      <h2 className="mb-3 line-clamp-2 font-heading text-2xl font-bold tracking-tight text-white transition-colors group-hover:text-primary-200">
+                      <h2 className="mb-3 line-clamp-2 font-heading text-2xl font-bold tracking-tight text-white transition-colors group-hover:text-[#f6aa00]">
                         {s.nome}
                       </h2>
 
-                      <p className="line-clamp-3 text-sm leading-6 text-white/95">
+                      <p className="line-clamp-3 text-sm leading-6 text-white/95 transition-colors group-hover:text-[#f6aa00]">
                         {s.descricao}
                       </p>
                     </div>
@@ -99,15 +104,15 @@ export default function Servicos({ categoria = 'tecnologia' }) {
 
             return (
               <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8">
-                <button type="button" aria-label="Fechar serviço" className="absolute inset-0 bg-slate-950/65 backdrop-blur-sm" onClick={() => setExpandedId(null)} />
-                <div className="relative z-10 w-full max-w-5xl animate-[fadeInPopup_0.35s_ease-out] overflow-hidden rounded-[28px] border-4 border-primary-600 bg-[linear-gradient(135deg,#11213d_0%,#1d3557_52%,#0b172d_100%)] shadow-[0_30px_90px_rgba(2,6,23,0.5)]" style={hasImage ? {
+                <button type="button" aria-label="Fechar serviço" className="absolute inset-0 bg-[#102a1a]/65 backdrop-blur-sm" onClick={() => setExpandedId(null)} />
+                <div className="service-modal relative z-10 w-full max-w-5xl animate-[fadeInPopup_0.35s_ease-out] overflow-hidden rounded-[28px] border-4 border-primary-600 bg-[linear-gradient(135deg,#173c25_0%,#245b35_52%,#102a1a_100%)] shadow-[0_30px_90px_rgba(2,6,23,0.5)]" style={hasImage ? {
                   backgroundImage: `linear-gradient(180deg, rgba(3,7,18,0.24), rgba(3,7,18,0.82)), url(${s.imagem})`,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
                   minHeight: '72vh',
                 } : { background: 'linear-gradient(135deg, rgba(17,33,61,0.96), rgba(13,23,42,0.97))', minHeight: '72vh' }}>
                   <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,6,23,0.68),rgba(2,6,23,0))]" />
-                  <div className="relative z-10 flex items-center justify-end border-b border-white/10 bg-slate-950/15 px-5 py-4 backdrop-blur-sm md:px-7">
+                  <div className="relative z-10 flex items-center justify-end border-b border-white/10 bg-[#102a1a]/15 px-5 py-4 backdrop-blur-sm md:px-7">
                     <button type="button" onClick={() => setExpandedId(null)} className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/10 text-lg text-white transition hover:bg-white/15">×</button>
                   </div>
 

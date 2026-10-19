@@ -25,7 +25,7 @@ const createBlock = (type) => {
         ctaPrimaryLink: '/servicos',
         ctaSecondaryText: 'Falar com a equipe',
         ctaSecondaryLink: '/contato',
-        backgroundImage: import.meta.env.BASE_URL + 'imagens-docx/image15.jpg',
+        backgroundImage: '/imagens-docx/image15.jpg',
         accentColor: '#f6aa00',
         textColor: '#ffffff',
         align: 'left',
@@ -38,7 +38,7 @@ const createBlock = (type) => {
         description: 'Subtítulo ou indicação breve da seção.',
         body: 'Escreva aqui o conteúdo desta área.',
         backgroundColor: '#ffffff',
-        textColor: '#101c43',
+        textColor: '#1f2a22',
       }
     case 'media':
       return {
@@ -51,7 +51,7 @@ const createBlock = (type) => {
         buttonText: 'Saiba mais',
         buttonLink: '/contato',
         backgroundColor: '#f7f8f5',
-        textColor: '#101c43',
+        textColor: '#1f2a22',
         align: 'left',
       }
     case 'cards':
@@ -66,7 +66,7 @@ const createBlock = (type) => {
           { title: 'Resultado', text: 'Ações orientadas ao impacto real para sua operação.' },
         ],
         backgroundColor: '#f7f8f5',
-        textColor: '#101c43',
+        textColor: '#1f2a22',
       }
     case 'cta':
       return {
@@ -76,7 +76,7 @@ const createBlock = (type) => {
         description: 'Use este bloco para reforçar a proposta de conversão.',
         buttonText: 'Fale conosco',
         buttonLink: '/contato',
-        backgroundColor: '#101c43',
+        backgroundColor: '#1f2a22',
         textColor: '#ffffff',
       }
     default:
@@ -260,7 +260,7 @@ const renderCanvasBlock = (block) => {
 
   if (block.type === 'text') {
     return (
-      <section className="builder-preview builder-preview--text" style={{ backgroundColor: block.backgroundColor || '#ffffff', color: block.textColor || '#101c43' }}>
+      <section className="builder-preview builder-preview--text" style={{ backgroundColor: block.backgroundColor || '#ffffff', color: block.textColor || '#1f2a22' }}>
         <p className="builder-preview__eyebrow" style={{ color: block.accentColor || '#36ad55' }}>Conteúdo</p>
         <h3>{block.title}</h3>
         <p className="builder-preview__muted">{block.description}</p>
@@ -271,13 +271,13 @@ const renderCanvasBlock = (block) => {
 
   if (block.type === 'media') {
     return (
-      <section className="builder-preview builder-preview--media" style={{ backgroundColor: block.backgroundColor || '#f7f8f5', color: block.textColor || '#101c43' }}>
-        <img src={block.imageUrl || import.meta.env.BASE_URL + 'imagens-docx/image15.jpg'} alt={block.title} />
+      <section className="builder-preview builder-preview--media" style={{ backgroundColor: block.backgroundColor || '#f7f8f5', color: block.textColor || '#1f2a22' }}>
+        <img src={block.imageUrl || '/imagens-docx/image15.jpg'} alt={block.title} />
         <div>
           <p className="builder-preview__eyebrow" style={{ color: block.accentColor || '#36ad55' }}>Destaque</p>
           <h3>{block.title}</h3>
           <p>{block.description}</p>
-          <button type="button" className="btn btn-sm mt-3" style={{ background: block.accentColor || '#f6aa00', color: '#071128' }}>{block.buttonText}</button>
+          <button type="button" className="btn btn-sm mt-3" style={{ background: block.accentColor || '#f6aa00', color: '#12351f' }}>{block.buttonText}</button>
         </div>
       </section>
     )
@@ -286,7 +286,7 @@ const renderCanvasBlock = (block) => {
   if (block.type === 'cards') {
     const items = parseItemsText(block.items)
     return (
-      <section className="builder-preview builder-preview--cards" style={{ backgroundColor: block.backgroundColor || '#f7f8f5', color: block.textColor || '#101c43' }}>
+      <section className="builder-preview builder-preview--cards" style={{ backgroundColor: block.backgroundColor || '#f7f8f5', color: block.textColor || '#1f2a22' }}>
         <p className="builder-preview__eyebrow" style={{ color: block.accentColor || '#36ad55' }}>Soluções</p>
         <h3>{block.title}</h3>
         <div className="builder-preview__grid">
@@ -303,13 +303,13 @@ const renderCanvasBlock = (block) => {
   }
 
   return (
-    <section className="builder-preview builder-preview--cta" style={{ backgroundColor: block.backgroundColor || '#101c43', color: block.textColor || '#ffffff' }}>
+    <section className="builder-preview builder-preview--cta" style={{ backgroundColor: block.backgroundColor || '#1f2a22', color: block.textColor || '#ffffff' }}>
       <div>
         <p className="builder-preview__eyebrow" style={{ color: block.accentColor || '#f6aa00' }}>Convite</p>
         <h3>{block.title}</h3>
         <p>{block.description}</p>
       </div>
-      <button type="button" className="btn btn-sm" style={{ background: block.accentColor || '#36ad55', color: '#071128' }}>{block.buttonText}</button>
+      <button type="button" className="btn btn-sm" style={{ background: block.accentColor || '#36ad55', color: '#12351f' }}>{block.buttonText}</button>
     </section>
   )
 }
@@ -396,7 +396,7 @@ function LegacyAdminConteudo() {
       text: 'Descreva o conteúdo desta área.',
       imageUrl: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80',
       backgroundColor: '#ffffff',
-      textColor: '#101c43',
+      textColor: '#1f2a22',
       borderColor: '#36ad55',
     }
 
@@ -651,7 +651,7 @@ function LegacyAdminConteudo() {
                       <input
                         type="color"
                         className="input bg-slate-950 border-slate-600 h-10"
-                        value={selectedSobreCard.textColor || '#101c43'}
+                        value={selectedSobreCard.textColor || '#1f2a22'}
                         onChange={(event) => updateSobreCard(selectedSobreCard.id, 'textColor', event.target.value)}
                       />
                     </div>

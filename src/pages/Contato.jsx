@@ -33,9 +33,11 @@ export default function Contato() {
     try {
       const dados = sanitizeObject({
         nome: raw.nome,
+        empresa: raw.empresa,
         municipio: raw.municipio,
         email: raw.email,
         telefone: raw.telefone,
+        servico: raw.servico,
         objetivo: raw.objetivo,
         mensagem: raw.mensagem,
         destinatario: raw.objetivo === 'orcamento'
@@ -55,7 +57,7 @@ export default function Contato() {
   }
 
   return (
-    <section className="public-page contact-page section" style={{ '--page-image': `url(${import.meta.env.BASE_URL}imagens-docx/image12.jpg)` }}>
+    <section className="public-page contact-page section" style={{ '--page-image': "url('/imagens-docx/image12.jpg')" }}>
       <div className="container">
         <div className="contact-page__intro">
           <div>
@@ -102,6 +104,17 @@ export default function Contato() {
             </div>
 
             <div>
+              <label className="label" htmlFor="empresa">Empresa *</label>
+              <input
+                id="empresa"
+                className={`input ${errors.empresa ? 'input-error' : ''}`}
+                placeholder="Nome da empresa"
+                {...register('empresa', { required: 'Empresa é obrigatória' })}
+              />
+              {errors.empresa && <p className="text-red-500 text-xs mt-1">{errors.empresa.message}</p>}
+            </div>
+
+            <div>
               <label className="label" htmlFor="municipio">Município *</label>
               <input
                 id="municipio"
@@ -135,6 +148,24 @@ export default function Contato() {
               />
               {errors.telefone && <p className="text-red-500 text-xs mt-1">{errors.telefone.message}</p>}
             </div>
+            </div>
+
+            <div>
+              <label className="label" htmlFor="servico">Serviço de interesse *</label>
+              <select
+                id="servico"
+                className={`input ${errors.servico ? 'input-error' : ''}`}
+                {...register('servico', { required: 'Selecione um serviço de interesse' })}
+              >
+                <option value="">Selecione uma opção</option>
+                <option value="ambiental">Ambiental</option>
+                <option value="engenharia">Engenharia</option>
+                <option value="gestao-de-obras">Gestão de obras</option>
+                <option value="gestao-ambiental-documental">Gestão ambiental e documental</option>
+                <option value="paisagismo">Paisagismo</option>
+                <option value="outros">Outro</option>
+              </select>
+              {errors.servico && <p className="text-red-500 text-xs mt-1">{errors.servico.message}</p>}
             </div>
 
             <div>

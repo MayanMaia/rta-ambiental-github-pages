@@ -35,7 +35,7 @@ export function resetMockData() {
     home: {
       eyebrow: 'Engenharia ambiental desde 2004',
       title: 'Experiência que transforma o futuro.',
-      description: 'Tecnologia, consultoria e engenharia para cuidar dos recursos que sustentam o seu negócio.',
+      description: 'Soluções ambientais e de engenharia para cuidar dos recursos que sustentam o seu negócio.',
     },
     sobre: {
       title: 'Sobre a RTA Ambiental',
@@ -46,9 +46,9 @@ export function resetMockData() {
     },
     sobreBuilder: {
       layout: [
-        { id: 'sobre-card-missao', type: 'card', title: 'Missão', text: 'Oferecer soluções ambientais de excelência, contribuindo para um futuro sustentável.', imageUrl: import.meta.env.BASE_URL + 'imagens-docx/image7.png', backgroundColor: '#ffffff', textColor: '#101c43', borderColor: '#36ad55' },
-        { id: 'sobre-card-visao', type: 'card', title: 'Visão', text: 'Ser referência em serviços ambientais, reconhecida pela qualidade e inovação.', imageUrl: import.meta.env.BASE_URL + 'imagens-docx/image8.jpg', backgroundColor: '#ffffff', textColor: '#101c43', borderColor: '#36ad55' },
-        { id: 'sobre-card-valores', type: 'card', title: 'Valores', text: 'Ética, responsabilidade, sustentabilidade, qualidade e comprometimento.', imageUrl: import.meta.env.BASE_URL + 'imagens-docx/image10.jpg', backgroundColor: '#ffffff', textColor: '#101c43', borderColor: '#36ad55' },
+        { id: 'sobre-card-missao', type: 'card', title: 'Missão', text: 'Oferecer soluções ambientais de excelência, contribuindo para um futuro sustentável.', imageUrl: '/imagens-docx/image7.png', backgroundColor: '#ffffff', textColor: '#1f2a22', borderColor: '#36ad55' },
+        { id: 'sobre-card-visao', type: 'card', title: 'Visão', text: 'Ser referência em serviços ambientais, reconhecida pela qualidade e inovação.', imageUrl: '/imagens-docx/image8.jpg', backgroundColor: '#ffffff', textColor: '#1f2a22', borderColor: '#36ad55' },
+        { id: 'sobre-card-valores', type: 'card', title: 'Valores', text: 'Ética, responsabilidade, sustentabilidade, qualidade e comprometimento.', imageUrl: '/imagens-docx/image10.jpg', backgroundColor: '#ffffff', textColor: '#1f2a22', borderColor: '#36ad55' },
       ],
     },
   }))

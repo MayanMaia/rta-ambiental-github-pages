@@ -1,7 +1,7 @@
 import { useAuth } from '../../hooks/useAuth'
 
 const CARDS = [
-  { label: 'Mensagens',  key: 'mensagens',  color: 'bg-blue-50 text-blue-700'    },
+  { label: 'Mensagens',  key: 'mensagens',  color: 'bg-green-50 text-green-700'    },
   { label: 'Candidatos', key: 'candidatos', color: 'bg-purple-50 text-purple-700' },
   { label: 'Serviços',   key: 'servicos',   color: 'bg-green-50 text-green-700'  },
   { label: 'Usuários',   key: 'usuarios',   color: 'bg-orange-50 text-orange-700' },
