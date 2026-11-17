@@ -1,16 +1,17 @@
 const WHATSAPP_NUMBER = import.meta.env.VITE_WHATSAPP_NUMBER
-const WHATSAPP_MSG    = 'Olá! Gostaria de saber mais sobre os serviços da RTA Ambiental.'
+const WHATSAPP_MSG = 'Olá! Vim pelo site da RTA Ambiental e gostaria de falar sobre um projeto.'
 
 export default function WhatsAppFAB() {
-  const number = WHATSAPP_NUMBER || '5500000000000'
-  const url = `https://wa.me/${number}?text=${encodeURIComponent(WHATSAPP_MSG)}`
+  if (!WHATSAPP_NUMBER) return null
+
+  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MSG)}`
 
   return (
     <a
       href={url}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Fale conosco pelo WhatsApp"
+      aria-label="Falar com a RTA pelo WhatsApp"
       className="fixed bottom-6 right-6 z-40 flex items-center justify-center
                  w-14 h-14 rounded-full bg-green-500 shadow-lg
                  hover:bg-green-600 hover:scale-105 active:scale-100

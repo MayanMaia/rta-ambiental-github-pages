@@ -3,4 +3,4 @@ Allow: /
 Disallow: /admin/
 Disallow: /api/
 
-Sitemap: https://www.rtaambiental.com.br/sitemap.xml
+Sitemap: https://www.rtaambiental.com.br/rta-ambiental-github-pages/sitemap.xml

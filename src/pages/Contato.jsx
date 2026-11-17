@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { ArrowUpRight } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { updateMeta } from '../utils/seo'
 import { contatoService } from '../services/contato.service'
 import { validators } from '../utils/validators'
@@ -30,6 +31,7 @@ export default function Contato() {
 
   const onSubmit = async (raw) => {
     setErro(null)
+    if (raw.website) return
     try {
       const dados = sanitizeObject({
         nome: raw.nome,
@@ -40,6 +42,7 @@ export default function Contato() {
         servico: raw.servico,
         objetivo: raw.objetivo,
         mensagem: raw.mensagem,
+        website: raw.website,
         destinatario: raw.objetivo === 'orcamento'
           ? 'consultoria@rtaambiental.com.br'
           : 'faleconosco@rtaambiental.com.br',
@@ -57,14 +60,14 @@ export default function Contato() {
   }
 
   return (
-    <section className="public-page contact-page section" style={{ '--page-image': `url(${import.meta.env.BASE_URL}imagens-docx/image12.jpg)` }}>
+    <section className="public-page contact-page section" style={{ '--page-image': "url('/imagens-docx/image12.jpg')" }}>
       <div className="container">
         <div className="contact-page__intro">
           <div>
             <p className="eyebrow">Vamos conversar</p>
             <h1 className="section-title">Contato</h1>
             <p className="section-subtitle">
-              Envie a sua mensagem que entraremos em contato.
+              Envie as informações iniciais da sua demanda. A equipe da RTA analisará o assunto, identificará a área mais adequada e retornará com os próximos passos para avaliação, orçamento ou definição de escopo.
             </p>
           </div>
         </div>
@@ -74,8 +77,8 @@ export default function Contato() {
             {enviado ? (
               <div className="contact-page__success">
                 <span className="contact-page__success-mark">&#10003;</span>
-                <p className="text-lg font-semibold">Mensagem enviada!</p>
-                <p>Obrigado pelo contato. Responderemos em breve.</p>
+                <p className="text-lg font-semibold">Recebemos sua mensagem.</p>
+                <p>Obrigado pelo contato. Nossa equipe avaliará as informações e retornará pelos canais informados.</p>
                 <button onClick={() => setEnviado(false)} className="btn-primary mt-6">
                   Enviar nova mensagem
                 </button>
@@ -83,6 +86,11 @@ export default function Contato() {
             ) : (
               <form onSubmit={handleSubmit(onSubmit)} noValidate>
                 <div className="contact-page__form-heading">
+                  <div className="hidden" aria-hidden="true">
+                    <label htmlFor="website">Website</label>
+                    <input id="website" tabIndex="-1" autoComplete="off" {...register('website')} />
+                  </div>
+
                   <div>
                     <p className="contact-page__kicker">Seu projeto</p>
                     <h2>Como podemos ajudar?</h2>
@@ -151,7 +159,7 @@ export default function Contato() {
             </div>
 
             <div>
-              <label className="label" htmlFor="servico">Serviço de interesse *</label>
+              <label className="label" htmlFor="servico">O que você precisa resolver? *</label>
               <select
                 id="servico"
                 className={`input ${errors.servico ? 'input-error' : ''}`}
@@ -163,6 +171,7 @@ export default function Contato() {
                 <option value="gestao-de-obras">Gestão de obras</option>
                 <option value="gestao-ambiental-documental">Gestão ambiental e documental</option>
                 <option value="paisagismo">Paisagismo</option>
+                <option value="consultoria">Consultoria</option>
                 <option value="outros">Outro</option>
               </select>
               {errors.servico && <p className="text-red-500 text-xs mt-1">{errors.servico.message}</p>}
@@ -202,19 +211,18 @@ export default function Contato() {
               <input
                 id="arquivo"
                 type="file"
-                accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png"
                 className={`contact-page__file ${errors.arquivo ? 'contact-page__file--error' : ''}`}
                 {...register('arquivo', {
                   validate: (files) => {
-                    if (objetivo === 'curriculo' && !files?.[0]) return 'Anexe seu currículo para continuar'
                     if (!files?.[0]) return true
-                    if (files[0].size > 5 * 1_024 * 1_024) return 'Arquivo deve ter no máximo 5MB'
-                    const tiposAceitos = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document']
-                    return tiposAceitos.includes(files[0].type) || 'Formato inválido. Envie PDF, DOC ou DOCX'
+                    if (files[0].size > 10 * 1_024 * 1_024) return 'Arquivo deve ter no máximo 10MB'
+                    const tiposAceitos = ['application/pdf', 'image/jpeg', 'image/png']
+                    return tiposAceitos.includes(files[0].type) || 'Formato inválido. Envie PDF, JPG ou PNG'
                   },
                 })}
               />
-              <p className="contact-page__file-help">PDF, DOC ou DOCX. Máximo de 5MB.</p>
+              <p className="contact-page__file-help">PDF, JPG ou PNG. Máximo de 10MB.</p>
               {errors.arquivo && <p className="text-red-500 text-xs mt-1">{errors.arquivo.message}</p>}
             </div>
 
@@ -230,14 +238,29 @@ export default function Contato() {
 
             <p className="text-xs text-neutral-400 text-center">
               Ao enviar, você concorda com nossa{' '}
-              <a href="/politica-de-privacidade" className="underline hover:text-neutral-600">
+              <Link to="/politica-de-privacidade" className="underline hover:text-neutral-600">
                 Política de Privacidade
-              </a>.
+              </Link>.
             </p>
                 </div>
               </form>
             )}
           </div>
+          <aside className="rounded-2xl border border-[#dce8df] bg-white p-6 shadow-card">
+            <h2 className="text-2xl font-heading font-bold text-[#1f2a22]">Para agilizar a avaliação, informe:</h2>
+            <ul className="mt-5 space-y-3 text-sm leading-relaxed text-neutral-700">
+              <li>tipo de projeto ou empreendimento;</li>
+              <li>cidade e estado;</li>
+              <li>serviço desejado;</li>
+              <li>estágio atual da obra ou processo;</li>
+              <li>principais prazos e dificuldades;</li>
+              <li>documentos ou imagens que ajudem a entender a demanda.</li>
+            </ul>
+            <div className="mt-8 border-t border-neutral-200 pt-6">
+              <h3 className="font-heading font-semibold text-[#1f2a22]">Canais oficiais</h3>
+              <a className="mt-3 block text-sm text-[#20823b] hover:underline" href="mailto:faleconosco@rtaambiental.com.br">faleconosco@rtaambiental.com.br</a>
+            </div>
+          </aside>
         </div>
       </div>
     </section>

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
+import { assetUrl } from '../../utils/assets'
 
-const logoRta = import.meta.env.BASE_URL + 'imagens-docx/image1.png'
+const logoRta = assetUrl('/imagens-docx/image1.png')
 
 export default function Footer() {
   const year = new Date().getFullYear()
@@ -30,7 +31,6 @@ export default function Footer() {
               { to: '/sobre',      label: 'Sobre'        },
               { to: '/tecnologia', label: 'Ambiental'     },
               { to: '/engenharia', label: 'Engenharia'   },
-              { to: '/engenharia#paisagismo', label: 'Paisagismo' },
               { to: '/consultoria',label:'Consultoria' },
               { to: '/contato',    label: 'Fale Conosco' },
             ].map(({ to, label }) => (
@@ -64,7 +64,7 @@ export default function Footer() {
           </p>
           <ul className="space-y-2 text-sm">
             <li><a href="mailto:faleconosco@rtaambiental.com.br" className="hover:text-white transition-colors">faleconosco@rtaambiental.com.br</a></li>
-            <li><a href="/contato" className="hover:text-white transition-colors">Formulário de contato</a></li>
+            <li><Link to="/contato" className="hover:text-white transition-colors">Formulário de contato</Link></li>
             <li className="pt-2 text-xs text-white/45">Filiais e telefones: consulte a equipe pelo formulário.</li>
           </ul>
         </div>

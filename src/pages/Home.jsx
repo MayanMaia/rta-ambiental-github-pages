@@ -2,12 +2,14 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { updateMeta } from '../utils/seo'
 import { getSiteContent } from '../mock/content'
+import FinalCTA from '../components/common/FinalCTA'
+import { assetUrl } from '../utils/assets'
 
 const SERVICES = [
-  { title: 'Ambiental', text: 'Soluções para resíduos, conformidade e gestão ambiental.', image: import.meta.env.BASE_URL + 'imagens-docx/image3.jpeg', link: '/tecnologia' },
-  { title: 'Engenharia', text: 'Obras, infraestrutura e acompanhamento técnico.', image: import.meta.env.BASE_URL + 'imagens-docx/image4.JPG', link: '/engenharia' },
-  { title: 'Gestão de obras', text: 'Planejamento, controle de campo e documentação.', image: import.meta.env.BASE_URL + 'imagens-docx/image5.png', link: '/engenharia' },
-  { title: 'Paisagismo', text: 'Soluções compatíveis com o ambiente e a manutenção futura.', image: import.meta.env.BASE_URL + 'imagens-docx/image6.JPG', link: '/engenharia' },
+  { title: 'Ambiental', text: 'Soluções para resíduos, conformidade e gestão ambiental.', image: '/imagens-docx/image3.jpeg', link: '/tecnologia' },
+  { title: 'Engenharia', text: 'Obras, infraestrutura e acompanhamento técnico.', image: '/imagens-docx/image4.JPG', link: '/engenharia' },
+  { title: 'Gestão de obras', text: 'Planejamento, controle de campo e documentação.', image: '/imagens-docx/image5.png', link: '/engenharia' },
+  { title: 'Paisagismo', text: 'Soluções compatíveis com o ambiente e a manutenção futura.', image: '/imagens-docx/image6.JPG', link: '/engenharia' },
 ]
 
 const parseItems = (items) => {
@@ -81,9 +83,18 @@ function HeroWithRotatingTitle({ block }) {
       style={{
         backgroundColor: block.backgroundColor || '#1f2a22',
         color: textColor,
-        backgroundImage: block.backgroundImage ? `url('${block.backgroundImage}')` : undefined,
+        backgroundImage: undefined,
       }}
     >
+      {block.backgroundImage ? (
+        <img
+          src={assetUrl(block.backgroundImage)}
+          alt="Profissional da RTA realizando levantamento topográfico em campo"
+          width="1600"
+          height="900"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+      ) : null}
       <div className="hero-home__veil" />
       <div className="container relative z-10 flex min-h-[min(760px,calc(100svh-4.5rem))] items-end pb-16 pt-28 md:pb-24">
         <div className="max-w-3xl animate-slide-up" style={{ textAlign: block.align === 'center' ? 'center' : block.align === 'right' ? 'right' : 'left' }}>
@@ -126,6 +137,7 @@ function renderBuilderBlock(block) {
   const sectionStyle = {
     backgroundColor,
     color: textColor,
+    borderTop: `1px solid ${textColor}26`,
   }
 
   switch (block.type) {
@@ -133,12 +145,23 @@ function renderBuilderBlock(block) {
       return <HeroWithRotatingTitle block={block} />
     case 'text':
       return (
-        <section className="section" style={sectionStyle}>
-          <div className="container max-w-4xl">
+        <section id={block.id === 'areas-de-atuacao' ? 'areas-de-atuacao' : undefined} className="section" style={sectionStyle}>
+          <div className="container">
             <p className="eyebrow" style={{ color: accentColor }}>Conteúdo</p>
             <h2 className="section-title" style={{ color: textColor }}>{block.title || 'Novo bloco de texto'}</h2>
             {block.description ? <p className="section-subtitle mb-6" style={{ color: `${textColor}CC` }}>{block.description}</p> : null}
             {block.body ? <p className="text-base leading-relaxed" style={{ color: `${textColor}CC` }}>{block.body}</p> : null}
+            {Array.isArray(block.items) ? (
+              <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                {block.items.map((item, index) => (
+                  <div key={`${item.title}-${index}`} className="rounded-2xl border border-primary-600/20 bg-white p-5 shadow-sm">
+                    <span className="mb-3 inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#36ad55]/10 text-sm font-bold text-[#20823b]">{index + 1}</span>
+                    <h3 className="text-lg font-heading font-semibold text-[#1f2a22]">{item.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-neutral-600">{item.text}</p>
+                  </div>
+                ))}
+              </div>
+            ) : null}
           </div>
         </section>
       )
@@ -147,7 +170,7 @@ function renderBuilderBlock(block) {
         <section className="section" style={sectionStyle}>
           <div className="container grid items-center gap-8 md:grid-cols-2">
             <div style={{ order: block.align === 'right' ? 2 : 1 }}>
-              <img src={block.imageUrl || import.meta.env.BASE_URL + 'imagens-docx/image15.jpg'} alt={block.title || 'Imagem'} className="h-[420px] w-full rounded-2xl object-cover" />
+              <img src={assetUrl(block.imageUrl || '/imagens-docx/image15.jpg')} alt={block.title || 'Imagem'} width="1200" height="800" className="h-[420px] w-full rounded-2xl object-cover" />
             </div>
             <div style={{ order: block.align === 'right' ? 1 : 2 }}>
               <p className="eyebrow" style={{ color: accentColor }}>Destaque</p>
@@ -172,13 +195,17 @@ function renderBuilderBlock(block) {
               {block.description ? <p className="section-subtitle" style={{ color: `${textColor}CC` }}>{block.description}</p> : null}
             </div>
             <div className="grid gap-4 md:grid-cols-3">
-              {items.map((item, index) => (
-                <div key={`${item.title}-${index}`} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm" style={{ borderColor: `${accentColor}33` }}>
+              {items.map((item, index) => {
+                const card = (
+                  <div className="h-full rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-card-hover" style={{ borderColor: `${accentColor}33` }}>
                   <span className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-full text-sm font-bold" style={{ background: `${accentColor}22`, color: accentColor }}>{index + 1}</span>
                   <h3 className="mb-3 text-xl font-heading font-semibold text-[#1f2a22]">{item.title}</h3>
                   <p className="text-sm leading-relaxed text-[#39443b]">{item.text}</p>
-                </div>
-              ))}
+                    {item.link ? <span className="mt-4 block text-sm font-semibold text-[#20823b]">Saiba mais →</span> : null}
+                  </div>
+                )
+                return item.link ? <Link key={`${item.title}-${index}`} to={item.link}>{card}</Link> : <div key={`${item.title}-${index}`}>{card}</div>
+              })}
             </div>
           </div>
         </section>
@@ -197,8 +224,11 @@ function renderBuilderBlock(block) {
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {items.map((item, index) => (
                 <figure key={`${item.title}-${index}`} className="overflow-hidden rounded-2xl bg-white shadow-sm">
-                  <img src={item.image} alt={item.title} loading="lazy" className="h-56 w-full object-cover transition duration-500 hover:scale-105" />
-                  <figcaption className="p-4 font-semibold text-[#1f2a22]">{item.title}</figcaption>
+                  <img src={assetUrl(item.image)} alt={item.title} width="800" height="560" loading="lazy" className="h-56 w-full object-cover transition duration-500 hover:scale-105" />
+                  <figcaption className="p-4 text-[#1f2a22]">
+                    <strong className="block font-semibold">{item.title}</strong>
+                    {item.text ? <span className="mt-2 block text-sm font-normal leading-relaxed text-neutral-600">{item.text}</span> : null}
+                  </figcaption>
                 </figure>
               ))}
             </div>
@@ -207,21 +237,7 @@ function renderBuilderBlock(block) {
       )
     }
     case 'cta':
-      return (
-        <section className="relative overflow-hidden py-16 text-white md:py-24" style={sectionStyle}>
-          <div className="absolute inset-y-0 right-0 w-1/2 bg-[url('/rta-ambiental-github-pages/imagens-docx/image15.jpg')] bg-cover bg-center opacity-25" />
-          <div className="container relative">
-            <p className="eyebrow" style={{ color: accentColor }}>Vamos construir juntos</p>
-            <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
-              <h2 className="max-w-2xl text-3xl font-heading font-semibold leading-tight sm:text-5xl" style={{ color: textColor }}>{block.title}</h2>
-              {block.buttonLink ? (
-                <Link to={block.buttonLink} className="btn btn-lg shrink-0" style={{ background: accentColor, color: '#12351f' }}>{block.buttonText || 'Saiba mais'}</Link>
-              ) : null}
-            </div>
-            {block.description ? <p className="mt-4 max-w-2xl" style={{ color: `${textColor}CC` }}>{block.description}</p> : null}
-          </div>
-        </section>
-      )
+      return <FinalCTA />
     default:
       return null
   }
@@ -242,7 +258,9 @@ export default function Home() {
     return () => window.removeEventListener('rta:content-updated', syncContent)
   }, [])
 
-  const builderLayout = Array.isArray(content?.pageBuilder?.layout) ? content.pageBuilder.layout : []
+  const builderLayout = Array.isArray(content?.pageBuilder?.layout)
+    ? content.pageBuilder.layout
+    : []
 
   return (
     <>
@@ -258,8 +276,8 @@ export default function Home() {
                 <h1 className="max-w-2xl text-4xl font-heading font-bold leading-[1.05] sm:text-6xl lg:text-7xl">{content.home.title}</h1>
                 <p className="mt-6 max-w-xl text-base leading-relaxed text-white/80 sm:text-lg">{content.home.description}</p>
                 <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-                  <Link to="/tecnologia" className="btn btn-lg bg-[#f6aa00] text-[#12351f] hover:bg-[#ffc13b]">Conheça nossas soluções</Link>
-                  <Link to="/contato" className="btn btn-lg border border-white/50 text-white hover:bg-white/10">Fale com a nossa equipe</Link>
+                  <Link to="/contato" className="btn btn-lg bg-[#f6aa00] text-[#12351f] hover:bg-[#ffc13b]">Solicitar diagnóstico</Link>
+                  <Link to="#areas-de-atuacao" className="btn btn-lg border border-white/50 text-white hover:bg-white/10">Conheça nossas áreas de atuação</Link>
                 </div>
               </div>
             </div>
@@ -275,7 +293,7 @@ export default function Home() {
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
                 {SERVICES.map((service, index) => (
                   <Link key={service.title} to={service.link} className="service-tile group animate-slide-up" style={{ animationDelay: `${index * 80}ms` }}>
-                    <img src={service.image} alt="" loading="lazy" /><span className="service-tile__shade" />
+                    <img src={assetUrl(service.image)} alt={service.title} width="800" height="900" loading="lazy" /><span className="service-tile__shade" />
                     <span className="relative z-10 mt-auto block p-5"><span className="mb-2 block text-xs font-bold uppercase tracking-wider text-[#f6aa00]">0{index + 1}</span><span className="block text-lg font-heading font-semibold text-white">{service.title}</span><span className="mt-2 block max-h-0 overflow-hidden text-sm leading-relaxed text-white/80 opacity-0 transition-all duration-500 group-hover:max-h-20 group-hover:opacity-100">{service.text}</span></span>
                   </Link>
                 ))}
@@ -283,11 +301,7 @@ export default function Home() {
             </div>
           </section>
 
-          <section className="relative overflow-hidden bg-[#1f2a22] py-16 text-white md:py-24">
-            <div className="absolute inset-y-0 right-0 w-1/2 bg-[url('/rta-ambiental-github-pages/imagens-docx/image15.jpg')] bg-cover bg-center opacity-25" />
-            <div className="container relative"><p className="eyebrow text-[#f6aa00]">Vamos construir juntos</p><div className="flex flex-col justify-between gap-8 md:flex-row md:items-end"><h2 className="max-w-2xl text-3xl font-heading font-semibold leading-tight sm:text-5xl">Seu próximo projeto pode deixar uma marca positiva.</h2><Link to="/contato" className="btn btn-lg shrink-0 bg-[#36ad55] text-white hover:bg-[#48c76a]">Iniciar conversa</Link></div>
-              </div>
-          </section>
+
         </>
       )}
     </>

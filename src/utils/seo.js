@@ -16,12 +16,16 @@ export function updateMeta({ title, description, canonical } = {}) {
   // Canonical
   let canonicalTag = document.querySelector('link[rel="canonical"]')
   if (canonical) {
+    const canonicalUrl = canonical.replace(
+      'https://www.rtaambiental.com.br/',
+      'https://www.rtaambiental.com.br/rta-ambiental-github-pages/',
+    )
     if (!canonicalTag) {
       canonicalTag = document.createElement('link')
       canonicalTag.rel = 'canonical'
       document.head.appendChild(canonicalTag)
     }
-    canonicalTag.href = canonical
+    canonicalTag.href = canonicalUrl
   }
 
   // OG

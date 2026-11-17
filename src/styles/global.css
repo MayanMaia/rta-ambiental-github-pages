@@ -114,7 +114,7 @@
     @apply badge bg-secondary-100 text-secondary-700;
   }
 
-  .hero-home { @apply relative isolate overflow-hidden; min-height: min(760px, calc(100svh - 4.5rem)); background: url('/rta-ambiental-github-pages/imagens-docx/image15.jpg') center / cover; }
+  .hero-home { @apply relative isolate overflow-hidden; min-height: min(760px, calc(100svh - 4.5rem)); background: url('/imagens-docx/image15.jpg') center / cover; }
   .hero-home__veil { @apply absolute inset-0; background: linear-gradient(90deg, rgba(7, 17, 40, .9) 0%, rgba(7, 17, 40, .58) 48%, rgba(7, 17, 40, .18) 100%); }
   .eyebrow { @apply mb-3 text-xs font-bold uppercase tracking-[.2em] text-[#36ad55]; }
   .service-tile { @apply relative flex min-h-[340px] overflow-hidden bg-[#1f2a22]; }
@@ -174,7 +174,7 @@
   }
   .contact-page__intro .section-title { @apply mb-3; }
   .contact-page__intro .section-subtitle { @apply max-w-2xl; }
-  .contact-page__layout { @apply mx-auto max-w-3xl; }
+  .contact-page__layout { @apply mx-auto grid max-w-6xl gap-8 lg:grid-cols-[minmax(0,1.4fr)_minmax(280px,.8fr)] lg:items-start; }
   .contact-page__kicker { @apply mb-3 text-xs font-bold uppercase tracking-[.2em] text-[#f6aa00]; }
   .contact-page__form-panel { @apply w-full rounded-2xl border border-[#dce8df] bg-[#f7faf7] p-5 shadow-card sm:p-8; }
   .contact-page__form-panel form { @apply border-0 bg-transparent p-0 shadow-none; }
@@ -250,7 +250,7 @@
 
   .builder-preview--hero {
     @apply relative overflow-hidden bg-[#1f2a22] text-white;
-    background-image: linear-gradient(90deg, rgba(7, 17, 40, .9) 0%, rgba(7, 17, 40, .6) 50%, rgba(7, 17, 40, .2) 100%), url('/rta-ambiental-github-pages/imagens-docx/image15.jpg');
+    background-image: linear-gradient(90deg, rgba(7, 17, 40, .9) 0%, rgba(7, 17, 40, .6) 50%, rgba(7, 17, 40, .2) 100%), url('/imagens-docx/image15.jpg');
     background-position: center;
     background-size: cover;
   }

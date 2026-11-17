@@ -18,9 +18,7 @@ export function isMockModeEnabled() {
   if (envEnabled) return true
   if (envDisabled) return false
 
-  // Em hospedagem estática, como GitHub Pages, não existe backend local.
-  // Sem VITE_API_URL, usa os dados mock tanto em desenvolvimento quanto em produção.
-  return !hasExplicitApiUrl
+  return !import.meta.env.PROD && !hasExplicitApiUrl
 }
 
 export function setMockModeEnabled(value) {

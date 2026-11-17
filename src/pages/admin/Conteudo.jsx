@@ -25,7 +25,7 @@ const createBlock = (type) => {
         ctaPrimaryLink: '/servicos',
         ctaSecondaryText: 'Falar com a equipe',
         ctaSecondaryLink: '/contato',
-        backgroundImage: import.meta.env.BASE_URL + 'imagens-docx/image15.jpg',
+        backgroundImage: '/imagens-docx/image15.jpg',
         accentColor: '#f6aa00',
         textColor: '#ffffff',
         align: 'left',
@@ -72,7 +72,7 @@ const createBlock = (type) => {
       return {
         id: baseId,
         type: 'cta',
-        title: 'Seu próximo projeto pode deixar uma marca positiva.',
+        title: 'Tem um projeto, uma exigência ambiental ou uma obra para organizar?',
         description: 'Use este bloco para reforçar a proposta de conversão.',
         buttonText: 'Fale conosco',
         buttonLink: '/contato',
@@ -272,7 +272,7 @@ const renderCanvasBlock = (block) => {
   if (block.type === 'media') {
     return (
       <section className="builder-preview builder-preview--media" style={{ backgroundColor: block.backgroundColor || '#f7f8f5', color: block.textColor || '#1f2a22' }}>
-        <img src={block.imageUrl || import.meta.env.BASE_URL + 'imagens-docx/image15.jpg'} alt={block.title} />
+        <img src={block.imageUrl || '/imagens-docx/image15.jpg'} alt={block.title} />
         <div>
           <p className="builder-preview__eyebrow" style={{ color: block.accentColor || '#36ad55' }}>Destaque</p>
           <h3>{block.title}</h3>
